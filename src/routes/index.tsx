@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import portrait from "@/assets/portrait.jpg";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -301,26 +301,64 @@ function Hero() {
         <div className="lg:col-span-4 flex flex-col items-center lg:items-end gap-6">
           <div className="relative">
             <div className="absolute -top-5 -left-8 -rotate-12 bg-accent text-paper px-3 py-1 text-[10px] font-bold uppercase tracking-widest shadow-md z-10">
-              Profile · 26
+              Specimen · No. 26
             </div>
-            <div className="w-64 aspect-[3/4] bg-muted p-3 shadow-2xl rotate-[3deg] relative">
-              <img
-                src={portrait}
-                alt="Portrait of Muhammad Ubaid ur Rehman"
-                width={640}
-                height={832}
-                className="w-full h-full object-cover grayscale-[15%] sepia-[15%]"
-              />
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-4 bg-accent/40 rotate-3 backdrop-blur-sm" />
+
+            {/* Typographic specimen card replacing the portrait */}
+            <div className="w-64 aspect-[3/4] bg-paper border border-ink/20 p-5 shadow-2xl rotate-[3deg] relative flex flex-col">
+              <div className="flex items-start justify-between font-mono text-[9px] uppercase tracking-[0.18em] text-ink/60">
+                <span>Aa — Bb</span>
+                <span>’99 / PK</span>
+              </div>
+
+              <div className="flex-1 flex items-center justify-center relative">
+                <span className="font-serif italic text-[14rem] leading-none text-ink select-none">
+                  U
+                </span>
+                <span className="absolute top-2 right-0 font-hand text-accent text-3xl rotate-[8deg]">
+                  hi.
+                </span>
+                <Asterisk className="absolute bottom-4 left-0 w-5 h-5 text-accent" />
+              </div>
+
+              <div className="border-t border-dashed border-ink/30 pt-3 mt-2">
+                <div className="font-serif text-sm leading-tight">
+                  Muhammad Ubaid
+                  <br />
+                  <span className="italic text-ink/70">ur Rehman</span>
+                </div>
+                <div className="mt-2 flex items-end justify-between">
+                  <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink/60">
+                    Engineer
+                    <br />
+                    &amp; Builder
+                  </div>
+                  {/* barcode */}
+                  <div className="flex items-end gap-[2px] h-6">
+                    {[3, 5, 2, 6, 3, 4, 2, 5, 3, 6, 4, 2, 5].map((h, i) => (
+                      <span
+                        key={i}
+                        className="bg-ink w-[2px]"
+                        style={{ height: `${h * 4}px` }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* tape */}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-accent/30 rotate-[-4deg]" />
             </div>
+
             <div className="absolute -bottom-6 -right-6">
               <StampRing label="Designed" sub="by hand" />
             </div>
           </div>
           <p className="font-hand text-ink/70 text-2xl rotate-[-3deg] mr-4">
-            ~ that's me.
+            ~ a type specimen.
           </p>
         </div>
+
       </div>
     </section>
   );
