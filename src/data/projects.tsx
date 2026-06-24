@@ -11,6 +11,9 @@ export type Project = {
   tags: string[];
   github: string;
   cover: ReactNode;
+  role: string;
+  year: string;
+  featured?: boolean;
 };
 
 export const projects: Project[] = [
@@ -21,8 +24,11 @@ export const projects: Project[] = [
       "Role-based AI app that lets users query a corpus of PDFs with vector search and LLMs. Responsive React + Tailwind frontend.",
     tags: ["React", "Tailwind", "Vector Search"],
     github: "https://github.com/BlackShadow7166/pdf-search-engine-frontend",
+    role: "Frontend lead · Team project",
+    year: "2025",
+    featured: true,
     cover: (
-      <div className="relative w-full h-full bg-[oklch(0.96_0.01_80)] overflow-hidden">
+      <div className="relative w-full h-full bg-[oklch(0.96_0.01_80)] overflow-hidden border border-ink/10">
         <div className="absolute inset-0 grid grid-cols-12 grid-rows-8 gap-px opacity-25">
           {Array.from({ length: 96 }).map((_, i) => (
             <div key={i} className="bg-ink/10" />
@@ -53,13 +59,15 @@ export const projects: Project[] = [
       "Writing platform with auth, post CRUD and DB managed through Appwrite. Built end-to-end with React and Tailwind.",
     tags: ["React", "Appwrite", "Redux"],
     github: "https://github.com/Snowden-0/blogApp",
+    role: "Full-stack · Solo",
+    year: "2024",
     cover: (
-      <div className="relative w-full h-full bg-accent overflow-hidden">
+      <div className="relative w-full h-full bg-accent overflow-hidden border border-paper/20">
         <div className="absolute inset-0 p-6 sm:p-8 flex flex-col gap-2 text-paper">
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] opacity-80">
             issue n° 04
           </span>
-          <h4 className="font-serif italic text-4xl sm:text-5xl leading-[0.9] mt-3">
+          <h4 className="font-serif italic text-3xl sm:text-4xl leading-[0.9] mt-3">
             On craft,
             <br /> code &amp;
             <br /> quiet hours.
@@ -80,16 +88,18 @@ export const projects: Project[] = [
       "Procedurally generated maze with custom 2D physics via matter.js and pure-JS movement. A small study in algorithms and play.",
     tags: ["JavaScript", "matter.js", "Canvas"],
     github: "https://github.com/Snowden-0/Maze",
+    role: "Game dev · Solo",
+    year: "2024",
     cover: (
       <div className="relative w-full h-full bg-ink overflow-hidden">
         <svg viewBox="0 0 200 150" className="absolute inset-0 w-full h-full animate-float">
-          <g stroke="oklch(0.962 0.012 80)" strokeWidth="1.2" fill="none" strokeLinecap="square">
+          <g stroke="oklch(0.962 0.012 80)" strokeWidth="1.6" fill="none" strokeLinecap="square">
             <path d="M10 10h180M10 10v130M190 10v130M10 140h180" />
             <path d="M40 10v40M40 50h40M80 50v40M40 90h80M120 50v60M80 130v-30" />
             <path d="M120 10v20M150 30h40M150 30v60M120 90h70M150 110v30" />
             <path d="M60 110h20v20" />
           </g>
-          <circle cx="25" cy="25" r="4" fill="#D95D39" className="animate-drift" />
+          <circle cx="25" cy="25" r="5" fill="#D95D39" className="animate-drift" />
           <rect x="180" y="130" width="6" height="6" fill="oklch(0.962 0.012 80)" />
         </svg>
         <span className="absolute bottom-4 left-4 font-mono text-[10px] uppercase tracking-widest text-paper/60">
@@ -105,12 +115,14 @@ export const projects: Project[] = [
       "Real-time exchange rates in a tidy React + Vite build. Custom hooks for input, swap and live conversion.",
     tags: ["React", "Vite", "Custom Hooks"],
     github: "https://github.com/Snowden-0/currencyConverter",
+    role: "Frontend · Solo",
+    year: "2024",
     cover: (
-      <div className="relative w-full h-full bg-muted overflow-hidden p-6 sm:p-8 flex flex-col justify-between">
+      <div className="relative w-full h-full bg-muted overflow-hidden p-6 sm:p-8 flex flex-col justify-between border border-ink/10">
         <div className="flex items-baseline gap-3">
-          <span className="font-serif text-5xl sm:text-7xl leading-none">$</span>
+          <span className="font-serif text-4xl sm:text-5xl leading-none">$</span>
           <ArrowScribble className="w-10 sm:w-12 h-5 sm:h-6 text-accent animate-drift" />
-          <span className="font-serif text-5xl sm:text-7xl leading-none italic">€</span>
+          <span className="font-serif text-4xl sm:text-5xl leading-none italic">€</span>
         </div>
         <div className="font-mono text-xs leading-relaxed text-ink/70">
           <div>1.000 USD</div>

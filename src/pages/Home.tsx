@@ -1,22 +1,12 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { AnimatedUnderlineLink } from "@/components/ui/AnimatedUnderlineLink";
+import { ProjectsSection } from "@/components/projects/ProjectsSection";
 import { Asterisk } from "@/components/icons/Asterisk";
 import { ArrowScribble } from "@/components/icons/ArrowScribble";
 import { Star } from "@/components/icons/Star";
-import { type Project, projects } from "@/data/projects";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import {
-  EASE_OUT,
-  fadeUp,
-  motionTransition,
-  scaleIn,
-  slideFromLeft,
-  slideFromRight,
-  staggerChildren,
-} from "@/lib/motion";
+import { fadeUp, motionTransition, scaleIn, staggerChildren } from "@/lib/motion";
 
 const HERO_NAME = [
   { text: "Muhammad", italic: false, accent: false },
@@ -208,143 +198,6 @@ function Hero() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ProjectsSection() {
-  const { ref, inView } = useScrollReveal({ amount: 0.15 });
-
-  return (
-    <section
-      id="work"
-      ref={ref as React.RefObject<HTMLElement>}
-      className="bg-ink text-paper py-20 sm:py-32 torn-edge-top relative z-20"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          transition={motionTransition(0.7)}
-          className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-12 sm:mb-20"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif italic shrink-0">
-            Selected Works
-          </h2>
-          <div className="h-px grow bg-paper/20 hidden sm:block" />
-          <span className="font-mono text-[11px] tracking-[0.3em] text-paper/60">01 — 04</span>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-16 sm:gap-y-24">
-          {projects.map((p, i) => (
-            <ProjectCard key={p.index} project={p} index={i} inView={inView} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProjectCard({
-  project,
-  index,
-  inView,
-}: {
-  project: Project;
-  index: number;
-  inView: boolean;
-}) {
-  const offset = index % 2 === 1;
-  const fromLeft = index % 2 === 0;
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState(false);
-
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 12;
-    setTilt({ x, y });
-  };
-
-  return (
-    <motion.article
-      variants={fromLeft ? slideFromLeft : slideFromRight}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      transition={motionTransition(0.75, index * 0.12)}
-      className={`group ${offset ? "md:mt-16 lg:mt-24" : ""}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => {
-        setHovered(false);
-        setTilt({ x: 0, y: 0 });
-      }}
-    >
-      <div
-        className="relative mb-5 sm:mb-6 overflow-hidden aspect-[4/3] outline outline-1 outline-paper/10"
-        onMouseMove={onMouseMove}
-      >
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            scale: hovered ? 1.03 : 1,
-            x: tilt.x,
-            y: tilt.y,
-          }}
-          transition={{ duration: 0.4, ease: EASE_OUT }}
-        >
-          {project.cover}
-        </motion.div>
-        <div className="absolute top-3 sm:top-4 left-3 sm:left-4 font-mono text-[10px] uppercase tracking-[0.25em] text-paper bg-ink/70 backdrop-blur px-2 py-1">
-          № {project.index}
-        </div>
-      </div>
-
-      <div className="flex items-start justify-between gap-4 sm:gap-6">
-        <div className="min-w-0">
-          <h3 className="text-xl sm:text-2xl font-serif mb-2">{project.title}</h3>
-          <p className="text-paper/60 text-sm leading-relaxed max-w-[44ch]">{project.blurb}</p>
-          <motion.div
-            className="mt-4 flex flex-wrap gap-2"
-            initial={false}
-            animate={hovered ? "visible" : "hidden"}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.04 } },
-            }}
-          >
-            {project.tags.map((t) => (
-              <motion.span
-                key={t}
-                variants={fadeUp}
-                transition={motionTransition(0.35)}
-                className="text-[10px] font-mono uppercase tracking-widest px-2 py-1 border border-paper/15 text-paper/70"
-              >
-                {t}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
-        <MagneticButton
-          as="a"
-          href={project.github}
-          target="_blank"
-          rel="noreferrer"
-          strength={0.25}
-          aria-label={`Open ${project.title} on GitHub`}
-          className="shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-paper/30 grid place-items-center text-paper hover:bg-accent hover:border-accent transition-colors active:scale-95"
-        >
-          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none">
-            <path
-              d="M7 17L17 7M9 7h8v8"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </MagneticButton>
-      </div>
-    </motion.article>
   );
 }
 
