@@ -11,6 +11,8 @@ import { EASE_OUT, fadeUp, motionTransition } from "@/lib/motion";
 
 const NAV_LINKS = [
   { href: "#work", label: "Work", id: "work" as const },
+  { href: "#experience", label: "Experience", id: "experience" as const },
+  { href: "#services", label: "Services", id: "services" as const },
   { href: "#stack", label: "Stack", id: "stack" as const },
   { href: "#contact", label: "Contact", id: "contact" as const },
 ];

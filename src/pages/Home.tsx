@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 
-import { AnimatedUnderlineLink } from "@/components/ui/AnimatedUnderlineLink";
+import { ExperienceSection } from "@/components/experience/ExperienceSection";
 import { ProjectsSection } from "@/components/projects/ProjectsSection";
+import { ServicesSection } from "@/components/services/ServicesSection";
+import { AnimatedUnderlineLink } from "@/components/ui/AnimatedUnderlineLink";
 import { Asterisk } from "@/components/icons/Asterisk";
 import { ArrowScribble } from "@/components/icons/ArrowScribble";
 import { Star } from "@/components/icons/Star";
@@ -260,7 +262,7 @@ function SkillsSection() {
             transition={motionTransition(0.5)}
             className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent"
           >
-            02 — Toolkit
+            04 — Toolkit
           </motion.span>
           <motion.h2
             variants={fadeUp}
@@ -309,7 +311,7 @@ function SkillsSection() {
           transition={motionTransition(0.6, 0.45)}
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-            03 — Education
+            05 — Education
           </span>
           <div className="mt-4 p-5 sm:p-6 border-l-2 border-accent bg-muted/40 relative">
             <h4 className="font-serif text-xl sm:text-2xl">International Islamic University</h4>
@@ -366,7 +368,7 @@ function ContactCard({ inView }: { inView: boolean }) {
         <Asterisk className="absolute top-5 right-5 w-6 sm:w-8 h-6 sm:h-8 text-paper/30 animate-spin-slow" />
 
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-90">
-          04 — Correspondence
+          06 — Correspondence
         </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif mt-3 mb-8 sm:mb-10 leading-[0.95]">
           Let's make
@@ -419,6 +421,8 @@ export default function Home() {
     <>
       <Hero />
       <ProjectsSection />
+      <ExperienceSection />
+      <ServicesSection />
       <Marquee />
       <SkillsSection />
     </>

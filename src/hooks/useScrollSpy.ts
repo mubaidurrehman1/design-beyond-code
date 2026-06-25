@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const SECTIONS = ["work", "stack", "contact"] as const;
+const SECTIONS = ["work", "experience", "services", "stack", "contact"] as const;
 export type SectionId = (typeof SECTIONS)[number];
 
 export function useScrollSpy() {
